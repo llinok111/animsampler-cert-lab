@@ -99,8 +99,9 @@ Scale invariance: time rescaled by 1e-3, 1, 1e3 on 40 cases → **40/40 identica
 
 Timing (validate + repair + core sampling + baseline sampling on all 100 cases, 7 samples):
 cold start **500.27 ms**, median **368.28 ms**, p95 **396.19 ms**, stddev **23.04 ms**,
-relative stddev **6.07%**. The 6% run-to-run spread is ordinary V8/GC jitter on a 0.4 s workload;
-no number above depends on the timing.
+relative stddev **6.07%**. A second full run from a clean clone measured **9.69%** RSD; that spread is
+ordinary V8/GC jitter on a 0.4 s workload, and it is disclosed because it approaches the 10% line.
+No number above depends on the timing.
 
 *The 15.279° headline maximum is not a repair failure: swapping or duplicating input times destroys
 the pairing between time and value, so no repair can recover the lost key. The honest bound is one
