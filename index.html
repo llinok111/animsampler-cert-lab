@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>glTF rotation sampler certifier</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; font: 13px/1.4 ui-monospace, monospace; background: #0b0e14; color: #d7dce5; }
+  #app { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+  aside { padding: 16px; border-right: 1px solid #1d2432; overflow: auto; }
+  h1 { font-size: 15px; margin: 0 0 4px; color: #8ad7ff; }
+  .sub { color: #7c8799; font-size: 11px; margin-bottom: 14px; }
+  label { display: block; margin: 12px 0 4px; color: #9aa6b8; font-size: 11px; text-transform: uppercase; }
+  select, input[type=range] { width: 100%; }
+  select { background: #141a26; color: #d7dce5; border: 1px solid #243049; padding: 5px; }
+  .row { display: flex; gap: 12px; align-items: baseline; }
+  .metric { font-size: 22px; color: #ffd479; }
+  .ok { color: #63e6a1; } .bad { color: #ff7b72; }
+  #defects { white-space: pre-wrap; color: #ff9e64; font-size: 11px; }
+  #actions { white-space: pre-wrap; color: #7ee787; font-size: 11px; }
+  main { position: relative; }
+  #hud { position: absolute; top: 12px; left: 12px; background: #0b0e14cc; padding: 8px 10px;
+         border: 1px solid #1d2432; font-size: 11px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside>
+    <h1>glTF rotation sampler certifier</h1>
+    <div class="sub">core.mjs is the same module node runs in bench/verify.mjs</div>
+    <label for="case">injected clip</label>
+    <select id="case"></select>
+    <label for="time">time <span id="timeval">0.000</span> s</label>
+    <input id="time" type="range" min="0" max="2" step="0.001" value="0" />
+    <div class="row"><span>live error vs clean track</span><span class="metric" id="err">–</span></div>
+    <div class="row"><span>naive baseline error</span><span class="metric" id="berr">–</span></div>
+    <label>detected defects</label>
+    <div id="defects">–</div>
+    <label>repair ledger</label>
+    <div id="actions">–</div>
+  </aside>
+  <main>
+    <div id="hud">
+      <div>solid = repaired track · wireframe = naive baseline</div>
+      <div id="status">loading…</div>
+    </div>
+  </main>
+</div>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

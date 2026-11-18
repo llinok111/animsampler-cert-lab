@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2026-11-18T06:26:39.516Z",
+  "node": "v24.19.0",
+  "corpus": {
+    "cleanClips": 15,
+    "injectedCases": 100,
+    "defectClasses": 8,
+    "oracleSamplesPerCase": 2000,
+    "totalOracleSamples": 200000
+  },
+  "defects": {
+    "detected": 100,
+    "repairedValid": 100,
+    "idempotent": 100,
+    "cleanFalsePositives": 0,
+    "perClass": {
+      "quat-non-unit": {
+        "cases": 15,
+        "detected": 15,
+        "maxErrDeg": 0.0000036222548091772005
+      },
+      "quat-sign-flip": {
+        "cases": 15,
+        "detected": 15,
+        "maxErrDeg": 0.0000036222548091772005
+      },
+      "quat-zero": {
+        "cases": 15,
+        "detected": 15,
+        "maxErrDeg": 1.2126672477918876
+      },
+      "non-finite": {
+        "cases": 15,
+        "detected": 15,
+        "maxErrDeg": 0.887583129638502
+      },
+      "time-not-increasing": {
+        "cases": 15,
+        "detected": 15,
+        "maxErrDeg": 15.278964365483159
+      },
+      "duplicate-time": {
+        "cases": 15,
+        "detected": 15,
+        "maxErrDeg": 15.27887453682194
+      },
+      "tangent-shape": {
+        "cases": 5,
+        "detected": 5,
+        "maxErrDeg": 1.327454569883128
+      },
+      "tangent-units": {
+        "cases": 5,
+        "detected": 5,
+        "maxErrDeg": 1.327454569883128
+      }
+    }
+  },
+  "oracle": {
+    "implementation": "independent 3x3 Rodrigues matrices (src/oracle-matrix.mjs)",
+    "repairedMaxDeg": 15.278964365483159,
+    "repairedMedianDeg": 0,
+    "repairedP95Deg": 0.06525305822543744
+  },
+  "baseline": {
+    "implementation": "baseline/naive.mjs component-lerp, no sign fix, raw tangents",
+    "mismatchRate": 0.35896,
+    "mismatchSamples": 71792,
+    "degenerateSamples": 836,
+    "maxFiniteDeg": 179.8549170814418,
+    "medianCaseMaxDeg": 15.194553876093943
+  },
+  "scaleInvariance": [
+    {
+      "factor": 0.001,
+      "codeSame": 40,
+      "of": 40,
+      "worstQuatDiff": 3.3306690738754696e-16
+    },
+    {
+      "factor": 1,
+      "codeSame": 40,
+      "of": 40,
+      "worstQuatDiff": 0
+    },
+    {
+      "factor": 1000,
+      "codeSame": 40,
+      "of": 40,
+      "worstQuatDiff": 3.3306690738754696e-16
+    }
+  ],
+  "timing": {
+    "coldStartMs": 500.271997,
+    "min": 359.156107,
+    "median": 368.276698,
+    "p95": 396.193138,
+    "max": 429.102659,
+    "mean": 379.4962505714287,
+    "stddev": 23.03634712953448,
+    "rsd": 0.0607024367035178,
+    "samples": 7
+  },
+  "note": "Timing covers validate+repair+oracle-vs-core+baseline sampling on every case."
+}
